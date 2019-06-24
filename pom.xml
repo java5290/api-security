@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.joinsoft</groupId>
+  <artifactId>api-security</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>api-security</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+	<spring.boot.version>2.1.3.RELEASE</spring.boot.version>
+	<hessian.version>4.0.38</hessian.version>
+	<cxf.version>3.3.2</cxf.version>
+	<slf4j.version>1.7.25</slf4j.version>
+	<!-- jjwt libs -->
+	<jjwt.version>0.9.0</jjwt.version>
+  </properties>
+  
+  <dependencyManagement>
+	  <dependencies>
+	    <dependency>
+	    <!-- Import dependency management from Spring Boot -->
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-dependencies</artifactId>
+	      <version>2.1.3.RELEASE</version>
+	      <type>pom</type>
+	      <scope>import</scope>
+	    </dependency>
+	    
+		<dependency>
+		    <groupId>com.caucho</groupId>
+		    <artifactId>hessian</artifactId>
+		    <version>${hessian.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		
+		<dependency>
+	        <groupId>org.apache.cxf</groupId>
+	        <artifactId>cxf-rt-ws-security</artifactId>
+	        <version>${cxf.version}</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>org.apache.cxf</groupId>
+	        <artifactId>cxf-rt-features-logging</artifactId>
+	        <version>${cxf.version}</version>
+	    </dependency>
+	    
+	    <dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-transports-http-jetty</artifactId>
+		    <version>${cxf.version}</version>
+		</dependency>
+		
+		<dependency>
+	        <groupId>org.apache.cxf</groupId>
+	        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+	        <version>${cxf.version}</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.apache.cxf</groupId>
+	        <artifactId>cxf-rt-transports-http</artifactId>
+	        <version>${cxf.version}</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>org.slf4j</groupId>
+	        <artifactId>slf4j-jdk14</artifactId>
+	        <version>${slf4j.version}</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.slf4j</groupId>
+	        <artifactId>jcl-over-slf4j</artifactId>
+	        <version>${slf4j.version}</version>
+	    </dependency>
+	    
+	    <!-- JJWT lib -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+
+	  </dependencies>
+  </dependencyManagement>
+  
+
+  
+  <build>
+	<plugins>
+		<!-- java编译插件 -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.1</version>
+			<configuration>
+				<source>${java.version}</source>
+				<target>${java.version}</target>
+				<!-- <encoding>UTF-8</encoding> -->
+			</configuration>
+		</plugin>
+		<!-- 加载下面插件，Maven Install 时不加载单元测试test -->
+		<plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-surefire-plugin</artifactId>
+	        <configuration>
+	          <skip>true</skip>
+	          <!-- <skipTests>true</skipTests> -->
+	        </configuration>
+	     </plugin>			
+	</plugins>
+  </build>
+	
+  <modules>
+  	<module>demo-hessian</module>
+  	<module>demo-cxf</module>
+    <module>demo-rest</module>
+  </modules>
+</project>

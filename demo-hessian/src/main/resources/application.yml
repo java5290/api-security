@@ -1,0 +1,22 @@
+server:
+  port: 80
+  servlet:
+    context-path: /demo-hessian
+
+spring:
+  # jsp config
+  mvc:
+    view:
+      prefix: /WEB-INF/views
+      suffix: .jsp
+  servlet:
+    multipart:
+      enabled: true
+      # file-size-threshold: 20
+      location: E://dfile
+      max-file-size: 1MB
+      max-request-size: 10MB
+# 日志配置
+logging:
+  level:
+    root: info
